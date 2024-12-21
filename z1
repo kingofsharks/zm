@@ -110,7 +110,7 @@ function RobloxTGM:CreateNotify(des,waittime)
 			Hub.Position = UDim2.new(0.0241379309, 0, 0.140000001, 0)
 			Hub.Size = UDim2.new(0, 275, 0, 11)
 			Hub.Font = Enum.Font.GothamBold
-			Hub.Text = "Roblox Hub"
+			Hub.Text = "Notify"
 			Hub.TextColor3 = Color3.new(0.156863, 0.156863, 0.156863)
 			Hub.TextSize = 12
 			Hub.TextXAlignment = Enum.TextXAlignment.Left
@@ -176,7 +176,7 @@ function RobloxTGM:CreateNotify(des,waittime)
 			Hub.Position = UDim2.new(0.0241379309, 0, 0.140000001, 0)
 			Hub.Size = UDim2.new(0, 275, 0, 11)
 			Hub.Font = Enum.Font.GothamBold
-			Hub.Text = "Roblox Hub"
+			Hub.Text = "Notify"
 			Hub.TextColor3 = Color3.new(1, 1, 1)
 			Hub.TextSize = 12
 			Hub.TextXAlignment = Enum.TextXAlignment.Left
@@ -392,7 +392,7 @@ function RobloxTGM:CreateNotify2(des,waittime,ImageId)
 			Hub.Position = UDim2.new(0.372413784, 0, 0.111428685, 0)
 			Hub.Size = UDim2.new(0, 144, 0, 11)
 			Hub.Font = Enum.Font.GothamBold
-			Hub.Text = "Roblox Hub"
+			Hub.Text = "Notify"
 			Hub.TextColor3 = Color3.new(1, 1, 1)
 			Hub.TextSize = 12
 			Hub.TextXAlignment = Enum.TextXAlignment.Left
@@ -471,7 +471,7 @@ function RobloxTGM:CreateNotify2(des,waittime,ImageId)
 			Hub.Position = UDim2.new(0.372413784, 0, 0.111428685, 0)
 			Hub.Size = UDim2.new(0, 144, 0, 11)
 			Hub.Font = Enum.Font.GothamBold
-			Hub.Text = "Roblox Hub"
+			Hub.Text = "Notify"
 			Hub.TextColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 			Hub.TextSize = 12
 			Hub.TextXAlignment = Enum.TextXAlignment.Left
@@ -516,7 +516,4 @@ function RobloxTGM:CreateNotify2(des,waittime,ImageId)
 	end)
 end
 
-RobloxTGM:CreateNotify('test',5)
-RobloxTGM:CreateNotify1('test',5)
-RobloxTGM:CreateNotify2('test',5,'test')
-print('Test')
+return RobloxTGM
