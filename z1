@@ -1,0 +1,522 @@
+local Players = game:GetService('Players')
+local plr = Players.LocalPlayer
+local plrgui = plr.PlayerGui
+local CoreGui = game:GetService('CoreGui') or plrgui
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local TweenService = game:GetService("TweenService")
+local ThemeRobloxTGM = 'Dark'
+local RobloxTGMGui = Instance.new("ScreenGui")
+
+RobloxTGMGui.Name = "RobloxTGM"
+RobloxTGMGui.Parent = CoreGui
+RobloxTGMGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local NotifyFrameGui = Instance.new("Frame")
+NotifyFrameGui.Name = "Notify"
+NotifyFrameGui.Parent = RobloxTGMGui
+NotifyFrameGui.BackgroundColor3 = Color3.new(0, 0, 0)
+NotifyFrameGui.BackgroundTransparency = 1
+NotifyFrameGui.BorderColor3 = Color3.new(0, 0, 0)
+NotifyFrameGui.BorderSizePixel = 0
+NotifyFrameGui.Position = UDim2.new(0.819571853, 0, 0.318936884, 0)
+NotifyFrameGui.Size = UDim2.new(0, 295, 0, 350)
+local UIPadding = Instance.new("UIPadding")
+UIPadding.Parent = NotifyFrameGui
+UIPadding.PaddingRight = UDim.new(0, 5)
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.Parent = NotifyFrameGui
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+UIListLayout.Padding = UDim.new(0, 5)
+
+local RobloxTGM = {}
+function RobloxTGM:Clear()
+	pcall(function()
+		for i,v in pairs(CoreGui:GetChildren()) do
+			if v.Name == 'RobloxTGM' then
+				v:Destroy()
+			end
+		end
+		for i,v in pairs(plrgui:GetChildren()) do
+			if v.Name == 'RobloxTGM' then
+				v:Destroy()
+			end
+		end
+	end)
+end
+RobloxTGM:Clear()
+function RobloxTGM:L(a)
+	for i,v in pairs(a) do
+		spawn(function()
+			if v.ClassName == 'TextLabel' then
+				v.TextTransparency = 1
+				TweenService:Create(
+					v,
+					TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+					{
+						TextTransparency = 0
+					}
+				):Play()
+			elseif v.ClassName == 'TextButton' then
+				v.TextTransparency = 1
+				TweenService:Create(
+					v,
+					TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+					{
+						TextTransparency = 0
+					}
+				):Play()
+			else
+				TweenService:Create(
+					v,
+					TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+					{
+						Transparency = 0
+					}
+				):Play()
+			end
+		end)
+	end
+end
+
+function RobloxTGM:CreateNotify(des,waittime)
+	spawn(function()
+		if ThemeRobloxTGM == 'Light' then
+			local MNotify = Instance.new("Frame")
+			local Line = Instance.new("Frame")
+			local Hub = Instance.new("TextLabel")
+			local Des = Instance.new("TextLabel")
+			local UICorner = Instance.new("UICorner")
+
+			MNotify.Name = "MNotify"
+			MNotify.Parent = NotifyFrameGui
+			MNotify.BackgroundColor3 = Color3.new(1, 1, 1)
+			MNotify.BorderColor3 = Color3.new(0, 0, 0)
+			MNotify.BorderSizePixel = 0
+			MNotify.Size = UDim2.new(1, 0, 0, 50)
+			MNotify.Transparency = 1
+			Line.Name = "Line"
+			Line.Parent = MNotify
+			Line.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+			Line.BorderColor3 = Color3.new(0, 0, 0)
+			Line.BorderSizePixel = 0
+			Line.Position = UDim2.new(0.0241379309, 0, 0.360000014, 0)
+			Line.Size = UDim2.new(0, 275, 0, 1)
+
+			Hub.Name = "Hub"
+			Hub.Parent = MNotify
+			Hub.BackgroundColor3 = Color3.new(1, 1, 1)
+			Hub.BackgroundTransparency = 1
+			Hub.BorderColor3 = Color3.new(0, 0, 0)
+			Hub.BorderSizePixel = 0
+			Hub.Position = UDim2.new(0.0241379309, 0, 0.140000001, 0)
+			Hub.Size = UDim2.new(0, 275, 0, 11)
+			Hub.Font = Enum.Font.GothamBold
+			Hub.Text = "Roblox Hub"
+			Hub.TextColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+			Hub.TextSize = 12
+			Hub.TextXAlignment = Enum.TextXAlignment.Left
+
+			Des.Name = "Des"
+			Des.Parent = MNotify
+			Des.BackgroundColor3 = Color3.new(1, 1, 1)
+			Des.BackgroundTransparency = 1
+			Des.BorderColor3 = Color3.new(0, 0, 0)
+			Des.BorderSizePixel = 0
+			Des.Position = UDim2.new(0.0241379309, 0, 0.5, 0)
+			Des.Size = UDim2.new(0, 275, 0, 19)
+			Des.Font = Enum.Font.GothamBold
+			Des.Text = des
+			Des.TextColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+			Des.TextSize = 14
+			Des.TextXAlignment = Enum.TextXAlignment.Left
+
+			UICorner.Parent = MNotify
+			UICorner.CornerRadius = UDim.new(0, 4)
+			RobloxTGM:L({MNotify,Line,Hub,Des})
+			if waittime then
+				wait(waittime)
+			else
+				wait(5)
+			end
+			TweenService:Create(
+				MNotify,
+				TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+				{
+					Transparency = 1
+				}
+			):Play()
+			MNotify:Destroy()
+		else
+			local MainNotify = Instance.new("Frame")
+			local Line = Instance.new("Frame")
+			local Hub = Instance.new("TextLabel")
+			local Des = Instance.new("TextLabel")
+			local UICorner = Instance.new("UICorner")
+
+			MainNotify.Name = "MainNotify"
+			MainNotify.Parent = NotifyFrameGui
+			MainNotify.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+			MainNotify.BorderColor3 = Color3.new(0, 0, 0)
+			MainNotify.BorderSizePixel = 0
+			MainNotify.Size = UDim2.new(1, 0, 0, 50)
+			MainNotify.Transparency = 1
+			Line.Name = "Line"
+			Line.Parent = MainNotify
+			Line.BackgroundColor3 = Color3.new(1, 1, 1)
+			Line.BorderColor3 = Color3.new(0, 0, 0)
+			Line.BorderSizePixel = 0
+			Line.Position = UDim2.new(0.0241379309, 0, 0.360000014, 0)
+			Line.Size = UDim2.new(0, 275, 0, 1)
+
+			Hub.Name = "Hub"
+			Hub.Parent = MainNotify
+			Hub.BackgroundColor3 = Color3.new(1, 1, 1)
+			Hub.BackgroundTransparency = 1
+			Hub.BorderColor3 = Color3.new(0, 0, 0)
+			Hub.BorderSizePixel = 0
+			Hub.Position = UDim2.new(0.0241379309, 0, 0.140000001, 0)
+			Hub.Size = UDim2.new(0, 275, 0, 11)
+			Hub.Font = Enum.Font.GothamBold
+			Hub.Text = "Roblox Hub"
+			Hub.TextColor3 = Color3.new(1, 1, 1)
+			Hub.TextSize = 12
+			Hub.TextXAlignment = Enum.TextXAlignment.Left
+
+			Des.Name = "Des"
+			Des.Parent = MainNotify
+			Des.BackgroundColor3 = Color3.new(1, 1, 1)
+			Des.BackgroundTransparency = 1
+			Des.BorderColor3 = Color3.new(0, 0, 0)
+			Des.BorderSizePixel = 0
+			Des.Position = UDim2.new(0.0241379309, 0, 0.5, 0)
+			Des.Size = UDim2.new(0, 275, 0, 19)
+			Des.Font = Enum.Font.GothamBold
+			Des.Text = des
+			Des.TextColor3 = Color3.new(1, 1, 1)
+			Des.TextSize = 14
+			Des.TextXAlignment = Enum.TextXAlignment.Left
+
+			UICorner.Parent = MainNotify
+			UICorner.CornerRadius = UDim.new(0, 4)
+			RobloxTGM:L({MainNotify,Line,Hub,Des})
+			if waittime then
+				wait(waittime)
+			else
+				wait(5)
+			end
+			TweenService:Create(
+				MainNotify,
+				TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+				{
+					Transparency = 1
+				}
+			):Play()
+			MainNotify:Destroy()
+		end
+	end)
+end
+
+function RobloxTGM:CreateNotify1(des,waittime,TextButton)
+	spawn(function()
+		if ThemeRobloxTGM == 'Light' then
+			if not TextButton then
+				TextButton = 'Submit'
+			end
+			local MNotify1 = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local Button1 = Instance.new("TextButton")
+			local UICorner_2 = Instance.new("UICorner")
+			local Des = Instance.new("TextLabel")
+			local MainNotify1 = Instance.new("Frame")
+			local UICorner_3 = Instance.new("UICorner")
+			local Button1_2 = Instance.new("TextButton")
+			local UICorner_4 = Instance.new("UICorner")
+			local Des_2 = Instance.new("TextLabel")
+
+			MNotify1.Name = "MNotify1"
+			MNotify1.Parent = NotifyFrameGui
+			MNotify1.BackgroundColor3 = Color3.new(1, 1, 1)
+			MNotify1.BorderColor3 = Color3.new(0, 0, 0)
+			MNotify1.BorderSizePixel = 0
+			MNotify1.Position = UDim2.new(0, 0, 0.157142863, 0)
+			MNotify1.Size = UDim2.new(1, 0, -0.0314285718, 75)
+			MNotify1.Transparency = 1
+			UICorner.Parent = MNotify1
+			UICorner.CornerRadius = UDim.new(0, 4)
+
+			Button1.Name = "Button1"
+			Button1.Parent = MNotify1
+			Button1.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+			Button1.BorderColor3 = Color3.new(0, 0, 0)
+			Button1.BorderSizePixel = 0
+			Button1.Position = UDim2.new(0.0241379309, 0, 0.484166622, 0)
+			Button1.Size = UDim2.new(0, 275, 0, 25)
+			Button1.Font = Enum.Font.GothamBold
+			Button1.Text = TextButton
+			Button1.TextColor3 = Color3.new(1, 1, 1)
+			Button1.TextSize = 12
+
+			UICorner_2.Parent = Button1
+			UICorner_2.CornerRadius = UDim.new(0, 2)
+
+			Des.Name = "Des"
+			Des.Parent = MNotify1
+			Des.BackgroundColor3 = Color3.new(1, 1, 1)
+			Des.BackgroundTransparency = 1
+			Des.BorderColor3 = Color3.new(0, 0, 0)
+			Des.BorderSizePixel = 0
+			Des.Position = UDim2.new(0.0241379309, 0, 0.086666666, 0)
+			Des.Size = UDim2.new(0, 275, 0, 19)
+			Des.Font = Enum.Font.GothamBold
+			Des.Text = des
+			Des.TextColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+			Des.TextSize = 14
+			Des.TextXAlignment = Enum.TextXAlignment.Left
+
+			RobloxTGM:L({MNotify1,Des,Button1})
+			if waittime then
+				wait(waittime)
+			else
+				wait(5)
+			end
+			TweenService:Create(
+				MNotify1,
+				TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+				{
+					Transparency = 1
+				}
+			):Play()
+			MNotify1:Destroy()
+		else
+			local MainNotify1 = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local Button1 = Instance.new("TextButton")
+			local UICorner_2 = Instance.new("UICorner")
+			local Des = Instance.new("TextLabel")
+
+			MainNotify1.Name = "MainNotify1"
+			MainNotify1.Parent = NotifyFrameGui
+			MainNotify1.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+			MainNotify1.BorderColor3 = Color3.new(0, 0, 0)
+			MainNotify1.BorderSizePixel = 0
+			MainNotify1.Position = UDim2.new(0, 0, 0.157142863, 0)
+			MainNotify1.Size = UDim2.new(1, 0, -0.0314285718, 75)
+
+			UICorner.Parent = MainNotify1
+			UICorner.CornerRadius = UDim.new(0, 4)
+
+			Button1.Name = "Button1"
+			Button1.Parent = MainNotify1
+			Button1.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+			Button1.BorderColor3 = Color3.new(0, 0, 0)
+			Button1.BorderSizePixel = 0
+			Button1.Position = UDim2.new(0.0241379309, 0, 0.484166622, 0)
+			Button1.Size = UDim2.new(0, 275, 0, 25)
+			Button1.Font = Enum.Font.GothamBold
+			Button1.Text = "Submit Button"
+			Button1.TextColor3 = Color3.new(1, 1, 1)
+			Button1.TextSize = 12
+
+			UICorner_2.Parent = Button1
+			UICorner_2.CornerRadius = UDim.new(0, 2)
+
+			Des.Name = "Des"
+			Des.Parent = MainNotify1
+			Des.BackgroundColor3 = Color3.new(1, 1, 1)
+			Des.BackgroundTransparency = 1
+			Des.BorderColor3 = Color3.new(0, 0, 0)
+			Des.BorderSizePixel = 0
+			Des.Position = UDim2.new(0.0241379309, 0, 0.086666666, 0)
+			Des.Size = UDim2.new(0, 275, 0, 19)
+			Des.Font = Enum.Font.GothamBold
+			Des.Text = "Notify Simple Code..."
+			Des.TextColor3 = Color3.new(1, 1, 1)
+			Des.TextSize = 14
+			Des.TextXAlignment = Enum.TextXAlignment.Left
+			RobloxTGM:L({MainNotify1,Des,Button1})
+			if waittime then
+				wait(waittime)
+			else
+				wait(5)
+			end
+			TweenService:Create(
+				MainNotify1,
+				TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+				{
+					Transparency = 1
+				}
+			):Play()
+			MainNotify1:Destroy()
+		end
+	end)
+end
+
+function RobloxTGM:CreateNotify2(des,waittime,ImageId)
+	spawn(function()
+		if ThemeRobloxTGM == 'Dark' then
+			if not ImageId then
+				ImageId = '0'
+			end
+			local MainNotify2 = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local Image = Instance.new("ImageLabel")
+			local Hub = Instance.new("TextLabel")
+			local Line = Instance.new("Frame")
+			local TextLabel = Instance.new("TextLabel")
+
+			MainNotify2.Name = "MainNotify2"
+			MainNotify2.Parent = NotifyFrameGui
+			MainNotify2.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+			MainNotify2.BorderColor3 = Color3.new(0, 0, 0)
+			MainNotify2.BorderSizePixel = 0
+			MainNotify2.Position = UDim2.new(0, 0, 0.354285717, 0)
+			MainNotify2.Size = UDim2.new(1, 0, -0.414285719, 250)
+			MainNotify2.Transparency = 1
+			UICorner.Parent = MainNotify2
+			UICorner.CornerRadius = UDim.new(0, 4)
+
+			Image.Name = "Image"
+			Image.Parent = MainNotify2
+			Image.BackgroundColor3 = Color3.new(1, 1, 1)
+			Image.BackgroundTransparency = 1
+			Image.BorderColor3 = Color3.new(0, 0, 0)
+			Image.BorderSizePixel = 0
+			Image.Position = UDim2.new(0.0517241396, 0, 0.095238097, 0)
+			Image.Size = UDim2.new(0, 85, 0, 85)
+
+			Hub.Name = "Hub"
+			Hub.Parent = MainNotify2
+			Hub.BackgroundColor3 = Color3.new(1, 1, 1)
+			Hub.BackgroundTransparency = 1
+			Hub.BorderColor3 = Color3.new(0, 0, 0)
+			Hub.BorderSizePixel = 0
+			Hub.Position = UDim2.new(0.372413784, 0, 0.111428685, 0)
+			Hub.Size = UDim2.new(0, 144, 0, 11)
+			Hub.Font = Enum.Font.GothamBold
+			Hub.Text = "Roblox Hub"
+			Hub.TextColor3 = Color3.new(1, 1, 1)
+			Hub.TextSize = 12
+			Hub.TextXAlignment = Enum.TextXAlignment.Left
+
+			Line.Name = "Line"
+			Line.Parent = MainNotify2
+			Line.BackgroundColor3 = Color3.new(1, 1, 1)
+			Line.BorderColor3 = Color3.new(0, 0, 0)
+			Line.BorderSizePixel = 0
+			Line.Position = UDim2.new(0.372000009, 0, 0.270000011, 0)
+			Line.Size = UDim2.new(0, 175, 0, 1)
+
+			TextLabel.Parent = MainNotify2
+			TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+			TextLabel.BackgroundTransparency = 1
+			TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(0.372413784, 0, 0.342857152, 0)
+			TextLabel.Size = UDim2.new(0, 174, 0, 58)
+			TextLabel.Font = Enum.Font.GothamBold
+			TextLabel.Text = des
+			TextLabel.TextColor3 = Color3.new(1, 1, 1)
+			TextLabel.TextSize = 12
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+			TextLabel.TextYAlignment = Enum.TextYAlignment.Top
+			RobloxTGM:L({MainNotify2,Line,Hub,Image,TextLabel})
+			if waittime then
+				wait(waittime)
+			else
+				wait(5)
+			end
+			TweenService:Create(
+				MainNotify2,
+				TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+				{
+					Transparency = 1
+				}
+			):Play()
+			MainNotify2:Destroy()
+		else
+			local MNotify2 = Instance.new("Frame")
+			local UICorner = Instance.new("UICorner")
+			local Image = Instance.new("ImageLabel")
+			local Hub = Instance.new("TextLabel")
+			local Line = Instance.new("Frame")
+			local TextLabel = Instance.new("TextLabel")
+
+
+			MNotify2.Name = "MNotify2"
+			MNotify2.Parent = NotifyFrameGui
+			MNotify2.BackgroundColor3 = Color3.new(1, 1, 1)
+			MNotify2.BorderColor3 = Color3.new(0, 0, 0)
+			MNotify2.BorderSizePixel = 0
+			MNotify2.Position = UDim2.new(0, 0, 0.354285717, 0)
+			MNotify2.Size = UDim2.new(1, 0, -0.414285719, 250)
+			MNotify2.Transparency = 1
+			UICorner.Parent = MNotify2
+			UICorner.CornerRadius = UDim.new(0, 4)
+
+			Image.Name = "Image"
+			Image.Parent = MNotify2
+			Image.BackgroundColor3 = Color3.new(1, 1, 1)
+			Image.BackgroundTransparency = 1
+			Image.BorderColor3 = Color3.new(0, 0, 0)
+			Image.BorderSizePixel = 0
+			Image.Position = UDim2.new(0.0517241396, 0, 0.095238097, 0)
+			Image.Size = UDim2.new(0, 85, 0, 85)
+
+			Hub.Name = "Hub"
+			Hub.Parent = MNotify2
+			Hub.BackgroundColor3 = Color3.new(1, 1, 1)
+			Hub.BackgroundTransparency = 1
+			Hub.BorderColor3 = Color3.new(0, 0, 0)
+			Hub.BorderSizePixel = 0
+			Hub.Position = UDim2.new(0.372413784, 0, 0.111428685, 0)
+			Hub.Size = UDim2.new(0, 144, 0, 11)
+			Hub.Font = Enum.Font.GothamBold
+			Hub.Text = "Roblox Hub"
+			Hub.TextColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+			Hub.TextSize = 12
+			Hub.TextXAlignment = Enum.TextXAlignment.Left
+
+			Line.Name = "Line"
+			Line.Parent = MNotify2
+			Line.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+			Line.BorderColor3 = Color3.new(0, 0, 0)
+			Line.BorderSizePixel = 0
+			Line.Position = UDim2.new(0.372000009, 0, 0.270000011, 0)
+			Line.Size = UDim2.new(0, 175, 0, 1)
+
+			TextLabel.Parent = MNotify2
+			TextLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+			TextLabel.BackgroundTransparency = 1
+			TextLabel.BorderColor3 = Color3.new(0, 0, 0)
+			TextLabel.BorderSizePixel = 0
+			TextLabel.Position = UDim2.new(0.372413784, 0, 0.342857152, 0)
+			TextLabel.Size = UDim2.new(0, 174, 0, 58)
+			TextLabel.Font = Enum.Font.GothamBold
+			TextLabel.Text = des
+			TextLabel.TextColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+			TextLabel.TextSize = 12
+			TextLabel.TextWrapped = true
+			TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+			TextLabel.TextYAlignment = Enum.TextYAlignment.Top
+			RobloxTGM:L({MNotify2,Line,Hub,Image,TextLabel})
+			if waittime then
+				wait(waittime)
+			else
+				wait(5)
+			end
+			TweenService:Create(
+				MNotify2,
+				TweenInfo.new(1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),
+				{
+					Transparency = 1
+				}
+			):Play()
+			MNotify2:Destroy()
+		end
+	end)
+end
+
+RobloxTGM:CreateNotify('test',5)
+RobloxTGM:CreateNotify1('test',5)
+RobloxTGM:CreateNotify2('test',5,'test')
+print('Test')
